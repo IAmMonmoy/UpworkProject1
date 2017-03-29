@@ -95,13 +95,16 @@ public class VideoData {
             String key = (String) iterator.next();
             Item item = library.get(key);
 
-            if (name.equalsIgnoreCase(item.name)) {
+            if (name.equalsIgnoreCase(item.name) || name.equalsIgnoreCase(item.director)) {
                 output = item.name + " - " + item.director + "\n";
-                return output;
+                output += "Rating :" + VideoPlayer.stars(item.rating) + "\n";
+                output += "Play Count :" + item.playCount + "\n";
+                
+
             }
         }
 
-        return null;
+        return output;
     }
 
     public static int getRating(String key) {
