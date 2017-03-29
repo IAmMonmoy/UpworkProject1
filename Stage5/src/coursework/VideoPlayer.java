@@ -170,14 +170,9 @@ public class VideoPlayer extends JFrame implements ActionListener {
         }else if(e.getSource() ==search){
             //Here ADD Surch Functionality
             String searchedName = searchField.getText();
-            String searchForDirector = VideoData.searchForDirector(searchedName);
-            String searchForName = VideoData.searchForName(searchedName);
+            String searchForName = VideoData.searchForName(searchedName);            
             
-            if(searchForDirector != null)
-            {
-                information.setText(searchForDirector);
-            }
-            else if(searchForName != null){
+            if(searchForName != null){
                 information.setText(searchForName);                
             }
             else
@@ -189,7 +184,7 @@ public class VideoPlayer extends JFrame implements ActionListener {
         }
     }
 
-    private String stars(int rating) {
+    public static String stars(int rating) {
         String stars = "";
         for (int i = 0; i < rating; ++i) {
             stars += "*";
