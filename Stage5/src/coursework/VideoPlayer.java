@@ -142,7 +142,7 @@ public class VideoPlayer extends JFrame implements ActionListener {
             }
 
         } else if (e.getSource() == reset) {
-            information.setText("");
+            information.setText(" ");
             playList.clear();
 
         } else if (e.getSource() == Update_rating) {
