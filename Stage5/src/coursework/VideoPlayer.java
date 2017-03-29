@@ -68,7 +68,7 @@ public class VideoPlayer extends JFrame implements ActionListener {
 //            new UpdateVideos();
         }
         else if (e.getSource() == quit) {
-//            VideoData.close();
+            VideoData.close();
             System.exit(0);
         }
     }
