@@ -61,10 +61,20 @@ public class CreateVideoList extends JFrame implements ActionListener {
             String name = VideoData.getName(key);
             
             if (name == null) {
-                JOptionPane.showMessageDialog(null, "Wrong Track Number!", "Error", JOptionPane.INFORMATION_MESSAGE);
+                //JOptionPane.showMessageDialog(null, "Wrong Track Number!", "Error", JOptionPane.INFORMATION_MESSAGE);
+                information.setText("No such video number");
             } else {
-                information.append(name + "\n");
+                information.setText("");
+                
                 playList.add(key);
+                
+                
+                for(int i = 0; i < playList.size(); i++)
+                {
+                    String tempKey = playList.get(i);
+                    String tempName = VideoData.getName(tempKey);
+                    information.append(tempName + "\n");
+                }
             }
                         
         }
