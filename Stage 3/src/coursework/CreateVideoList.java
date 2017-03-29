@@ -21,19 +21,22 @@ public class CreateVideoList extends JFrame implements ActionListener {
     TextArea information = new TextArea(6, 50);
     JButton list = new JButton("Reset playlist");
     JButton check = new JButton("Add to playlist");
+    JButton play = new JButton("play video");
 
     public CreateVideoList()  {
         setLayout(new BorderLayout());
-        setBounds(100, 100, 400, 200);
+        setBounds(100, 100, 500, 200);
         setTitle("Create video playlist");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         JPanel top = new JPanel();
         top.add(new JLabel("Enter Video Number:"));
         top.add(trackNo);
-        top.add(check);
+        top.add(check);        
+        top.add(play);
         top.add(list);
         list.addActionListener(this);
-        check.addActionListener(this);
+        check.addActionListener(this);        
+        play.addActionListener(this);
         add("North", top);
         JPanel middle = new JPanel();
         information.setText("");
