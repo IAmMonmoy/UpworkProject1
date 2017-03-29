@@ -62,25 +62,26 @@ public class VideoPlayer extends JFrame implements ActionListener {
 
         top.add(new JLabel("Enter Video Number:"));
         top.add(trackNo);
+        top.add(new JLabel("Enter Video Rating:"));
+        top.add(trackRating);
         top.add(new JLabel("video/director name:"));
         top.add(searchField);
-        top.add(search);
-        search.addActionListener(this);
+        
         add("North", top);
 
         information.setText("");
         middle.add(information);
         add("Center", middle);
-        
-        bottom.add(new JLabel("Enter Video Rating:"));
-        bottom.add(trackRating);
+       
         bottom.add(Update_rating);
         Update_rating.addActionListener(this);
         bottom.add(quit);
         quit.addActionListener(this);
         add("South", bottom);
 
-        right.setLayout(new GridLayout(2, 1));
+        right.setLayout(new GridLayout(3, 1));
+        right.add(search);
+        search.addActionListener(this);
         right.add(check);
         check.addActionListener(this);
         right.add(list);
@@ -160,10 +161,12 @@ public class VideoPlayer extends JFrame implements ActionListener {
                     information.append("\nPlay count: " + VideoData.getPlayCount(key));
 
                     VideoData.setRating(key, rating_value);
-
+                    
                 } catch (NumberFormatException ex) {
+                    trackRating.setText("");
                     information.setText("Rating is invalid");
                 } catch (NullPointerException ex) {
+                    trackRating.setText("");
                     information.setText("Rating is invalid");
                 }
             }
