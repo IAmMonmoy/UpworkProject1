@@ -71,7 +71,7 @@ public class CreateVideoList extends JFrame implements ActionListener {
         
         else if(e.getSource() == reset)
         {
-            information.setText("");
+            information.setText(null);
             playList.clear();
         }
         else if(e.getSource() == play){
