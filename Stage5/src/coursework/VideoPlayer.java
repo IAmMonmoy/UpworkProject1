@@ -27,6 +27,7 @@ public class VideoPlayer extends JFrame implements ActionListener {
     private ArrayList<String> playList;
     JTextField trackNo = new JTextField(2);
     JTextField trackRating = new JTextField(2);
+    JTextField searchField = new JTextField(10);
     TextArea information = new TextArea(6, 50);
     JButton check = new JButton("Check Videos");
     JButton quit = new JButton("Exit");
@@ -35,6 +36,7 @@ public class VideoPlayer extends JFrame implements ActionListener {
     JButton addToPlaylist = new JButton("Add to playlist");
     JButton play = new JButton("play video");
     JButton list = new JButton("List All Videos");
+    JButton search = new JButton("Search");
 
     public static void main(String[] args) {
         new VideoPlayer();
@@ -48,11 +50,19 @@ public class VideoPlayer extends JFrame implements ActionListener {
 
 // close application only by clicking the quit button setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
+        JPanel upperTop = new JPanel();
         JPanel top = new JPanel();
         JPanel bottom = new JPanel();
         JPanel left = new JPanel();
         JPanel right = new JPanel();
         JPanel middle = new JPanel();
+        
+        upperTop.add(searchField);
+        upperTop.add(search);
+        
+        add("North", upperTop);
+        
+        
 
         top.add(new JLabel("Enter Video Number:"));
         top.add(trackNo);
