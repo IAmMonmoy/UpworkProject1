@@ -44,7 +44,7 @@ public class VideoPlayer extends JFrame implements ActionListener {
 
     public VideoPlayer() {
         setLayout(new BorderLayout());
-        setBounds(100, 100, 615, 200);
+        setBounds(100, 100, 615, 230);
         setTitle("Video Player");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
