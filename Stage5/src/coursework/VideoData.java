@@ -36,6 +36,7 @@ public class VideoData {
         library.put("03", new Item("Dr. Strangelove", "Stanley Kubrick", 2));
         library.put("04", new Item("Babies 1st Birthday", "Me", 1));
         library.put("05", new Item("Rat Pfink a Boo Boo", "Ray Steckler", 3));
+        library.put("06", new Item("x and y", "Fred Quimby", 4));
     }
 
     public static String listAll() {
@@ -96,11 +97,9 @@ public class VideoData {
             Item item = library.get(key);
 
             if (name.equalsIgnoreCase(item.name) || name.equalsIgnoreCase(item.director)) {
-                output = item.name + " - " + item.director + "\n";
+                output += item.name + " - " + item.director + "\n";
                 output += "Rating :" + VideoPlayer.stars(item.rating) + "\n";
                 output += "Play Count :" + item.playCount + "\n";
-                
-
             }
         }
 

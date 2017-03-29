@@ -80,21 +80,21 @@ public class VideoPlayer extends JFrame implements ActionListener {
         quit.addActionListener(this);
         add("South", bottom);
 
-        left.setLayout(new GridLayout(2, 1));
-        left.add(check);
+        right.setLayout(new GridLayout(2, 1));
+        right.add(check);
         check.addActionListener(this);
-        left.add(list);
+        right.add(list);
         list.addActionListener(this);
-        add("West", left);
-
-        right.setLayout(new GridLayout(3, 1));
-        right.add(addToPlaylist);
-        addToPlaylist.addActionListener(this);
-        right.add(play);
-        play.addActionListener(this);
-        right.add(reset);
-        reset.addActionListener(this);
         add("East", right);
+
+        left.setLayout(new GridLayout(3, 1));
+        left.add(addToPlaylist);
+        addToPlaylist.addActionListener(this);
+        left.add(play);
+        play.addActionListener(this);
+        left.add(reset);
+        reset.addActionListener(this);
+        add("West", left);
 
         setResizable(false);
         setVisible(true);
