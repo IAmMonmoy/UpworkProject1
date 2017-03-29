@@ -124,7 +124,6 @@ public class VideoPlayer extends JFrame implements ActionListener {
             if (name == null) {
                 information.setText("No such video number");
             } else {
-                information.setText("");
                 information.setText(" ");
 
                 playList.add(key);
@@ -143,7 +142,7 @@ public class VideoPlayer extends JFrame implements ActionListener {
             }
 
         } else if (e.getSource() == reset) {
-            information.setText("");
+            information.setText(" ");
             playList.clear();
 
         } else if (e.getSource() == Update_rating) {
