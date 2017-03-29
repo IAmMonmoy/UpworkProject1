@@ -22,13 +22,11 @@ import javax.swing.JTextField;
  *
  * @author Jaggesher
  */
-
 public class VideoPlayer extends JFrame implements ActionListener {
-    
+
     private ArrayList<String> playList;
-     
     JTextField trackNo = new JTextField(2);
-    JTextField trackRating= new JTextField(2);
+    JTextField trackRating = new JTextField(2);
     TextArea information = new TextArea(6, 50);
     JButton check = new JButton("Check Videos");
     JButton quit = new JButton("Exit");
@@ -52,34 +50,34 @@ public class VideoPlayer extends JFrame implements ActionListener {
 
         JPanel top = new JPanel();
         JPanel bottom = new JPanel();
-        JPanel left= new JPanel();
-        JPanel right =new JPanel();
+        JPanel left = new JPanel();
+        JPanel right = new JPanel();
         JPanel middle = new JPanel();
-        
+
         top.add(new JLabel("Enter Video Number:"));
         top.add(trackNo);
         top.add(new JLabel("Enter Video Rating:"));
         top.add(trackRating);
-        add("North",top);
-        
+        add("North", top);
+
         information.setText("");
         middle.add(information);
         add("Center", middle);
-        
+
         bottom.add(Update_rating);
         Update_rating.addActionListener(this);
         bottom.add(quit);
         quit.addActionListener(this);
         add("South", bottom);
-        
-        left.setLayout(new GridLayout(2,1));
+
+        left.setLayout(new GridLayout(2, 1));
         left.add(check);
         check.addActionListener(this);
         left.add(list);
         list.addActionListener(this);
         add("West", left);
-        
-        right.setLayout(new GridLayout(3,1));
+
+        right.setLayout(new GridLayout(3, 1));
         right.add(addToPlaylist);
         addToPlaylist.addActionListener(this);
         right.add(play);
@@ -87,12 +85,11 @@ public class VideoPlayer extends JFrame implements ActionListener {
         right.add(reset);
         reset.addActionListener(this);
         add("East", right);
-        
+
         setResizable(false);
         setVisible(true);
         playList = new ArrayList<>();
     }
-
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == check) {
@@ -106,61 +103,67 @@ public class VideoPlayer extends JFrame implements ActionListener {
                         + stars(VideoData.getRating(key)));
                 information.append("\nPlay count: " + VideoData.getPlayCount(key));
             }
-            
-        }else if (e.getSource() == list) {
-             information.setText(VideoData.listAll());
-            
-        }else if (e.getSource() == addToPlaylist) {
+
+        } else if (e.getSource() == list) {
+            information.setText(VideoData.listAll());
+
+        } else if (e.getSource() == addToPlaylist) {
             String key = trackNo.getText();
             String name = VideoData.getName(key);
-            
+
             if (name == null) {
-                JOptionPane.showMessageDialog(null, "Wrong Track Number!", "Error", JOptionPane.INFORMATION_MESSAGE);
+                information.setText("No such video number");
             } else {
-                information.append(name + "\n");
+                information.setText("");
+
                 playList.add(key);
-            }   
-        }else if (e.getSource() == play) {
-            for(int i = 0; i < playList.size(); i++)
-            {
+
+
+                for (int i = 0; i < playList.size(); i++) {
+                    String tempKey = playList.get(i);
+                    String tempName = VideoData.getName(tempKey);
+                    information.append(tempName + "\n");
+                }
+            }
+        } else if (e.getSource() == play) {
+            for (int i = 0; i < playList.size(); i++) {
                 String key = playList.get(i);
                 VideoData.incrementPlayCount(key);
             }
-            
-        }else if (e.getSource() == reset) {
+
+        } else if (e.getSource() == reset) {
             information.setText("");
             playList.clear();
-            
-        }else if (e.getSource() == Update_rating) {
-            String key=trackNo.getText();
-            String rating=trackRating.getText();
+
+        } else if (e.getSource() == Update_rating) {
+            String key = trackNo.getText();
+            String rating = trackRating.getText();
             String name = VideoData.getName(key);
-            if(name==null){
-                 information.setText("No such video number");
-            }
-            else {
-                try{
-                    int rating_value= Integer.parseInt(rating);
+            if (name == null) {
+                information.setText("No such video number");
+            } else {
+                try {
+                    int rating_value = Integer.parseInt(rating);
                     information.setText(name + " - " + VideoData.getDirector(key));
                     information.append("\nRating: "
                             + stars(rating_value));
                     information.append("\nPlay count: " + VideoData.getPlayCount(key));
-                    
+
                     VideoData.setRating(key, rating_value);
-                    
-                }catch(NumberFormatException ex){
+
+                } catch (NumberFormatException ex) {
                     information.setText("Rating is invalid");
-                }catch(NullPointerException ex) {
-                   information.setText("Rating is invalid");
+                } catch (NullPointerException ex) {
+                    information.setText("Rating is invalid");
                 }
             }
-        }
-        else if (e.getSource() == quit) {
+        } else if (e.getSource() == quit) {
             VideoData.close();
             System.exit(0);
         }
     }
-     private String stars(int rating) {
+
+    private String stars(int rating) {
         String stars = "";
         for (int i = 0; i < rating; ++i) {
             stars += "*";
