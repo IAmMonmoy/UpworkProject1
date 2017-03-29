@@ -1,11 +1,16 @@
 package coursework;
-
+// import the classes of the abstract windows toolkit and
+// swing to enable the use of components such as buttons
+// and import event to make use of events such as actionPerformed event
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+//Extending Jframe class for using the functionality of the class and
+//implementing ActionListener interface
 public class CheckVideos extends JFrame implements ActionListener {
-
+    
+    //initializing components for the GUI
     JTextField trackNo = new JTextField(2);
     TextArea information = new TextArea(6, 50);
     JButton list = new JButton("List All Videos");
