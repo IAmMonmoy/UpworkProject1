@@ -27,6 +27,7 @@ public class VideoPlayer extends JFrame implements ActionListener {
     private ArrayList<String> playList;
     JTextField trackNo = new JTextField(2);
     JTextField trackRating = new JTextField(2);
+    JTextField video_name = new JTextField(10);
     TextArea information = new TextArea(6, 50);
     JButton check = new JButton("Check Videos");
     JButton quit = new JButton("Exit");
@@ -35,6 +36,7 @@ public class VideoPlayer extends JFrame implements ActionListener {
     JButton addToPlaylist = new JButton("Add to playlist");
     JButton play = new JButton("play video");
     JButton list = new JButton("List All Videos");
+    JButton serch = new JButton("Serch");
 
     public static void main(String[] args) {
         new VideoPlayer();
@@ -56,14 +58,18 @@ public class VideoPlayer extends JFrame implements ActionListener {
 
         top.add(new JLabel("Enter Video Number:"));
         top.add(trackNo);
-        top.add(new JLabel("Enter Video Rating:"));
-        top.add(trackRating);
+        top.add(new JLabel("video/director name:"));
+        top.add(video_name);
+        top.add(serch);
+        serch.addActionListener(this);
         add("North", top);
 
         information.setText("");
         middle.add(information);
         add("Center", middle);
-
+        
+        bottom.add(new JLabel("Enter Video Rating:"));
+        bottom.add(trackRating);
         bottom.add(Update_rating);
         Update_rating.addActionListener(this);
         bottom.add(quit);
@@ -157,7 +163,10 @@ public class VideoPlayer extends JFrame implements ActionListener {
                     information.setText("Rating is invalid");
                 }
             }
-        } else if (e.getSource() == quit) {
+        }else if(e.getSource() ==serch){
+            //Here ADD Surch Functionality
+            information.setText("ADD CODE HERE");
+        }else if (e.getSource() == quit) {
             VideoData.close();
             System.exit(0);
         }
