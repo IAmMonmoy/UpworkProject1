@@ -10,6 +10,7 @@ public class CheckVideos extends JFrame implements ActionListener {
     TextArea information = new TextArea(6, 50);
     JButton list = new JButton("List All Videos");
     JButton check = new JButton("Check	Video");
+    
 
     public CheckVideos() {
         setLayout(new BorderLayout());
@@ -21,6 +22,7 @@ public class CheckVideos extends JFrame implements ActionListener {
         top.add(trackNo);
         top.add(check);
         top.add(list);
+       
         list.addActionListener(this);
         check.addActionListener(this);
         add("North", top);

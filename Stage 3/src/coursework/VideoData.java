@@ -16,6 +16,7 @@ public class VideoData {
             director = d;
             rating = r;
         }
+       
 
         @Override
         public String toString() {
@@ -104,4 +105,6 @@ public class VideoData {
         // Does nothing for this static version.
         // Write a statement to close the database when you are using one
     }
+    
+    
 }
