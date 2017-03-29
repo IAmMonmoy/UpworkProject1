@@ -37,7 +37,7 @@ public class VideoPlayer extends JFrame implements ActionListener {
     JButton play = new JButton("play video");
     JButton list = new JButton("List All Videos");
     JButton search = new JButton("Search");
-
+    
     public static void main(String[] args) {
         new VideoPlayer();
     }
@@ -50,30 +50,30 @@ public class VideoPlayer extends JFrame implements ActionListener {
 
 // close application only by clicking the quit button setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
-        JPanel upperTop = new JPanel();
         JPanel top = new JPanel();
         JPanel bottom = new JPanel();
         JPanel left = new JPanel();
         JPanel right = new JPanel();
         JPanel middle = new JPanel();
         
-        upperTop.add(searchField);
-        upperTop.add(search);
-        
-        add("North", upperTop);
+   
         
         
 
         top.add(new JLabel("Enter Video Number:"));
         top.add(trackNo);
-        top.add(new JLabel("Enter Video Rating:"));
-        top.add(trackRating);
+        top.add(new JLabel("video/director name:"));
+        top.add(searchField);
+        top.add(search);
+        search.addActionListener(this);
         add("North", top);
 
         information.setText("");
         middle.add(information);
         add("Center", middle);
-
+        
+        bottom.add(new JLabel("Enter Video Rating:"));
+        bottom.add(trackRating);
         bottom.add(Update_rating);
         Update_rating.addActionListener(this);
         bottom.add(quit);
@@ -167,7 +167,10 @@ public class VideoPlayer extends JFrame implements ActionListener {
                     information.setText("Rating is invalid");
                 }
             }
-        } else if (e.getSource() == quit) {
+        }else if(e.getSource() ==search){
+            //Here ADD Surch Functionality
+            information.setText("ADD CODE HERE");
+        }else if (e.getSource() == quit) {
             VideoData.close();
             System.exit(0);
         }
