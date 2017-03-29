@@ -63,11 +63,12 @@ public class CreateVideoList extends JFrame implements ActionListener {
             if (name == null) {
                 information.setText("No such video number");
             } else {
+                information.setText(" ");
                 information.setText("");
                 
                 playList.add(key);
                 
-                
+                System.out.println(playList.size());
                 for(int i = 0; i < playList.size(); i++)
                 {
                     String tempKey = playList.get(i);

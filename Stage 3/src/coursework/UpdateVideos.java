@@ -55,7 +55,6 @@ public class UpdateVideos extends JFrame implements ActionListener {
         if(e.getSource()==enter){
             String key=trackNo.getText();
             String rating=trackRating.getText();
-            System.out.println("Rating: "+rating);
             String name = VideoData.getName(key);
             if(name==null){
                  information.setText("No such video number");
