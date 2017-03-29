@@ -9,6 +9,7 @@ import java.awt.HeadlessException;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.*;
 
 /**
@@ -16,6 +17,8 @@ import javax.swing.*;
  * @author Shoukhin
  */
 public class CreateVideoList extends JFrame implements ActionListener {
+    
+    private ArrayList<String> playList;
 
     JTextField trackNo = new JTextField(2);
     TextArea information = new TextArea(6, 50);
@@ -45,6 +48,8 @@ public class CreateVideoList extends JFrame implements ActionListener {
 
         setResizable(false);
         setVisible(true);
+        
+        playList = new ArrayList<>();
     }
     
     
@@ -59,13 +64,22 @@ public class CreateVideoList extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Wrong Track Number!", "Error", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 information.append(name + "\n");
+                playList.add(key);
             }
                         
         }
         
-        if(e.getSource() == reset)
+        else if(e.getSource() == reset)
         {
             information.setText("");
+            playList.clear();
+        }
+        else if(e.getSource() == play){
+            for(int i = 0; i < playList.size(); i++)
+            {
+                String key = playList.get(i);
+                VideoData.incrementPlayCount(key);
+            }
         }
     }
 }
