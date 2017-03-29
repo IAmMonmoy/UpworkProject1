@@ -124,7 +124,7 @@ public class VideoPlayer extends JFrame implements ActionListener {
             if (name == null) {
                 information.setText("No such video number");
             } else {
-                information.setText("");
+                information.setText(" ");
 
                 playList.add(key);
 
@@ -169,7 +169,20 @@ public class VideoPlayer extends JFrame implements ActionListener {
             }
         }else if(e.getSource() ==search){
             //Here ADD Surch Functionality
-            information.setText("ADD CODE HERE");
+            String searchedName = searchField.getText();
+            String searchForDirector = VideoData.searchForDirector(searchedName);
+            String searchForName = VideoData.searchForName(searchedName);
+            
+            if(searchForDirector != null)
+            {
+                information.setText(searchForDirector);
+            }
+            else if(searchForName != null){
+                information.setText(searchForName);                
+            }
+            else
+                information.setText("No such video with this name");
+                    
         }else if (e.getSource() == quit) {
             VideoData.close();
             System.exit(0);

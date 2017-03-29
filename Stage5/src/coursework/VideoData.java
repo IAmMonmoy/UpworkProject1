@@ -1,6 +1,7 @@
 package coursework;
 
 import java.util.*;
+import javax.print.attribute.standard.OutputDeviceAssigned;
 
 public class VideoData {
 
@@ -16,14 +17,12 @@ public class VideoData {
             director = d;
             rating = r;
         }
-       
 
         @Override
         public String toString() {
             return name + " - " + director;
         }
     }
-
     // with a Map you use put to insert a key, value pair
     // and get(key) to retrieve the value associated with a key
     // You don't need to understand how this works!
@@ -68,6 +67,42 @@ public class VideoData {
             return item.director;
         }
     }
+    
+    
+
+    public static String searchForDirector(String name) {
+        String output = "";
+        Iterator iterator = library.keySet().iterator();
+        while (iterator.hasNext()) {
+            String key = (String) iterator.next();
+            Item item = library.get(key);
+
+            if (name.equalsIgnoreCase(item.director)) {
+                output = item.name + " - " + item.director + "\n";
+                return output;
+            }
+        }
+
+        return null;
+    }
+    
+    
+
+    public static String searchForName(String name) {
+        String output = "";
+        Iterator iterator = library.keySet().iterator();
+        while (iterator.hasNext()) {
+            String key = (String) iterator.next();
+            Item item = library.get(key);
+
+            if (name.equalsIgnoreCase(item.name)) {
+                output = item.name + " - " + item.director + "\n";
+                return output;
+            }
+        }
+
+        return null;
+    }
 
     public static int getRating(String key) {
         Item item = library.get(key);
@@ -105,6 +140,4 @@ public class VideoData {
         // Does nothing for this static version.
         // Write a statement to close the database when you are using one
     }
-    
-    
 }
