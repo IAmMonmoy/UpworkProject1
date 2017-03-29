@@ -64,6 +64,7 @@ public class CreateVideoList extends JFrame implements ActionListener {
                 information.setText("No such video number");
             } else {
                 information.setText(" ");
+                information.setText("");
                 
                 playList.add(key);
                 
