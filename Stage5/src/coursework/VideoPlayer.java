@@ -88,90 +88,108 @@ public class VideoPlayer extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == check) {
-            String key = trackNo.getText();
-            String name = VideoData.getName(key);
-            if (name == null) {
-                information.setText("No such video number");
-            } else {
-                information.setText(name + " - " + VideoData.getDirector(key));
-                information.append("\nRating: "
-                        + stars(VideoData.getRating(key)));
-                information.append("\nPlay count: " + VideoData.getPlayCount(key));
-            }
-
-        } else if (e.getSource() == list) {
-            information.setText(VideoData.listAll());
-
-        } else if (e.getSource() == addToPlaylist) {
-            String key = trackNo.getText();
-            String name = VideoData.getName(key);
-
-            if (name == null) {
-                information.setText("No such video number");
-            } else {
-                information.setText(" ");
-                playList.add(key);
-
-                for (int i = 0; i < playList.size(); i++) {
-                    String tempKey = playList.get(i);
-                    String tempName = VideoData.getName(tempKey);
-                    information.append(tempName + "\n");
+      
+            if (e.getSource() == check) {
+                String key = trackNo.getText();
+                if(isNumeric(key))
+                {
+                    String name = VideoData.getName(key);
+                    if (name == null) {
+                        information.setText("No such video number");
+                    } else {
+                        information.setText(name + " - " + VideoData.getDirector(key));
+                        information.append("\nRating: "
+                                + stars(VideoData.getRating(key)));
+                        information.append("\nPlay count: " + VideoData.getPlayCount(key));
+                    }
                 }
-            }
-        } else if (e.getSource() == play) {
-            if (playList.size() == 0) {
-                information.setText("No Video in playlist to play");
-            }
-            for (int i = 0; i < playList.size(); i++) {
-                String key = playList.get(i);
-                VideoData.incrementPlayCount(key);
-            }
+                 else{
+                        JOptionPane.showMessageDialog(null, "Please Enter A valid digit", "Warning", JOptionPane.INFORMATION_MESSAGE);
+                    }
+           } else if (e.getSource() == list) {
+               information.setText(VideoData.listAll());
 
-        } else if (e.getSource() == reset) {
-            information.setText(" ");
-            playList.clear();
+           } else if (e.getSource() == addToPlaylist) {
+               String key = trackNo.getText();
+               if(isNumeric(key))
+                {
+                    String name = VideoData.getName(key);
 
-        } else if (e.getSource() == Update_rating) {
-            String key = trackNo.getText();
-            String rating = trackRating.getText();
-            String name = VideoData.getName(key);
-            if (name == null) {
-                information.setText("No such video number");
-            } else {
-                try {
-                    int rating_value = Integer.parseInt(rating);
-                    information.setText(name + " - " + VideoData.getDirector(key));
-                    information.append("\nRating: "
-                            + stars(rating_value));
-                    information.append("\nPlay count: " + VideoData.getPlayCount(key));
+                    if (name == null) {
+                        information.setText("No such video number");
+                    } else {
+                        information.setText(" ");
+                        playList.add(key);
 
-                    VideoData.setRating(key, rating_value);
-
-                } catch (NumberFormatException ex) {
-                    trackRating.setText("");
-                    information.setText("Rating is invalid");
-                } catch (NullPointerException ex) {
-                    trackRating.setText("");
-                    information.setText("Rating is invalid");
+                        for (int i = 0; i < playList.size(); i++) {
+                            String tempKey = playList.get(i);
+                            String tempName = VideoData.getName(tempKey);
+                            information.append(tempName + "\n");
+                        }
+                    }
                 }
-            }
-        } else if (e.getSource() == search) {
-            //Here ADD Surch Functionality
-            String searchedName = searchField.getText();
-            String searchForName = VideoData.searchForName(searchedName);
+                else{
+                    JOptionPane.showMessageDialog(null, "Please Enter A valid digit", "Warning", JOptionPane.INFORMATION_MESSAGE);
+                }
+           } else if (e.getSource() == play) {
+               if (playList.size() == 0) {
+                   information.setText("No Video in playlist to play");
+               }
+               for (int i = 0; i < playList.size(); i++) {
+                   String key = playList.get(i);
+                   VideoData.incrementPlayCount(key);
+               }
 
-            if (searchForName != null) {
-                information.setText(searchForName);
-            } else {
-                information.setText("No such video with this name");
-            }
+           } else if (e.getSource() == reset) {
+               information.setText(" ");
+               playList.clear();
 
-        } else if (e.getSource() == quit) {
-            VideoData.close();
-            System.exit(0);
-        }
-    }
+           } else if (e.getSource() == Update_rating) {
+               String key = trackNo.getText();
+                String rating = trackRating.getText();
+                if(isNumeric(key) &&  isNumeric(rating))
+                {
+                    String name = VideoData.getName(key);
+                    if (name == null) {
+                        information.setText("No such video number");
+                    } else {
+                        try {
+                            int rating_value = Integer.parseInt(rating);
+                            information.setText(name + " - " + VideoData.getDirector(key));
+                            information.append("\nRating: "
+                                    + stars(rating_value));
+                            information.append("\nPlay count: " + VideoData.getPlayCount(key));
+
+                            VideoData.setRating(key, rating_value);
+
+                        } catch (NumberFormatException ex) {
+                            trackRating.setText("");
+                            information.setText("Rating is invalid");
+                        } catch (NullPointerException ex) {
+                            trackRating.setText("");
+                            information.setText("Rating is invalid");
+                        }
+                    }
+                }
+                 else{
+                        JOptionPane.showMessageDialog(null, "Please Enter A valid digit", "Warning", JOptionPane.INFORMATION_MESSAGE);
+                    }
+            } else if (e.getSource() == search) {
+                //Here ADD Surch Functionality
+                String searchedName = searchField.getText();
+                String searchForName = VideoData.searchForName(searchedName);
+
+                if (searchForName != null) {
+                    information.setText(searchForName);
+                } else {
+                    information.setText("No such video with this name");
+                }
+
+            } else if (e.getSource() == quit) {
+                VideoData.close();
+                System.exit(0);
+            }
+       }
 
     public static String stars(int rating) {
         String stars = "";
@@ -179,5 +197,18 @@ public class VideoPlayer extends JFrame implements ActionListener {
             stars += "*";
         }
         return stars;
+    }
+    
+    public static boolean isNumeric(String str)  
+    {  
+      try  
+      {  
+        double d = Double.parseDouble(str);  
+      }  
+      catch(NumberFormatException nfe)  
+      {  
+        return false;  
+      }  
+      return true;  
     }
 }
