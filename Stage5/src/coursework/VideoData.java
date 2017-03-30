@@ -71,24 +71,6 @@ public class VideoData {
     
     
 
-    public static String searchForDirector(String name) {
-        String output = "";
-        Iterator iterator = library.keySet().iterator();
-        while (iterator.hasNext()) {
-            String key = (String) iterator.next();
-            Item item = library.get(key);
-
-            if (name.equalsIgnoreCase(item.director)) {
-                output = item.name + " - " + item.director + "\n";
-                return output;
-            }
-        }
-
-        return null;
-    }
-    
-    
-
     public static String searchForName(String name) {
         String output = "";
         Iterator iterator = library.keySet().iterator();

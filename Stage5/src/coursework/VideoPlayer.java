@@ -126,10 +126,8 @@ public class VideoPlayer extends JFrame implements ActionListener {
                 information.setText("No such video number");
             } else {
                 information.setText(" ");
-
                 playList.add(key);
-
-
+                
                 for (int i = 0; i < playList.size(); i++) {
                     String tempKey = playList.get(i);
                     String tempName = VideoData.getName(tempKey);
@@ -137,6 +135,10 @@ public class VideoPlayer extends JFrame implements ActionListener {
                 }
             }
         } else if (e.getSource() == play) {
+            if(playList.size() == 0)
+            {
+                information.setText("No Video in playlist to play");
+            }
             for (int i = 0; i < playList.size(); i++) {
                 String key = playList.get(i);
                 VideoData.incrementPlayCount(key);
