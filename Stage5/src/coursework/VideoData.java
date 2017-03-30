@@ -1,7 +1,8 @@
 package coursework;
 
-import java.util.*;
-import javax.print.attribute.standard.OutputDeviceAssigned;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class VideoData {
 
@@ -78,6 +79,7 @@ public class VideoData {
             String key = (String) iterator.next();
             Item item = library.get(key);
 
+            //checking if matched with director name or video name
             if (name.equalsIgnoreCase(item.name) || name.equalsIgnoreCase(item.director)) {
                 output += item.name + " - " + item.director + "\n";
                 output += "Rating :" + VideoPlayer.stars(item.rating) + "\n";

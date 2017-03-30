@@ -1,7 +1,8 @@
 package coursework;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class VideoPlayer extends JFrame implements ActionListener {
@@ -20,7 +21,8 @@ public class VideoPlayer extends JFrame implements ActionListener {
         setSize(450, 100);
         setTitle("Video Player");
 
-// close application only by clicking the quit button setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        // close application only by clicking the quit button 
+        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         JPanel top = new JPanel();
         top.add(new JLabel("Select an option by clicking one of the buttons below"));
         add("North", top);

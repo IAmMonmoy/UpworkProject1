@@ -1,21 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package coursework;
 
 import java.awt.BorderLayout;
-import java.awt.HeadlessException;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 
-/**
- *
- * @author Shoukhin
- */
 public class CreateVideoList extends JFrame implements ActionListener {
     
     private ArrayList<String> playList;
@@ -68,17 +59,15 @@ public class CreateVideoList extends JFrame implements ActionListener {
                 
                 playList.add(key);
                 
-                System.out.println(playList.size());
+                //printing all playlist data to textarea
                 for(int i = 0; i < playList.size(); i++)
                 {
                     String tempKey = playList.get(i);
                     String tempName = VideoData.getName(tempKey);
                     information.append(tempName + "\n");
                 }
-            }
-                        
-        }
-        
+            }                        
+        }        
         else if(e.getSource() == reset)
         {
             information.setText(null);

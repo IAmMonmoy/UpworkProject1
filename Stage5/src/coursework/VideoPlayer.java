@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package coursework;
 
 import java.awt.BorderLayout;
@@ -11,17 +7,9 @@ import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
-/**
- *
- * @author Jaggesher
- */
+
 public class VideoPlayer extends JFrame implements ActionListener {
 
     private ArrayList<String> playList;
@@ -37,7 +25,7 @@ public class VideoPlayer extends JFrame implements ActionListener {
     JButton play = new JButton("play video");
     JButton list = new JButton("List All Videos");
     JButton search = new JButton("Search");
-    
+
     public static void main(String[] args) {
         new VideoPlayer();
     }
@@ -48,17 +36,14 @@ public class VideoPlayer extends JFrame implements ActionListener {
         setTitle("Video Player");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-// close application only by clicking the quit button setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+// close application only by clicking the quit button 
+        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
         JPanel top = new JPanel();
         JPanel bottom = new JPanel();
         JPanel left = new JPanel();
         JPanel right = new JPanel();
         JPanel middle = new JPanel();
-        
-   
-        
-        
 
         top.add(new JLabel("Enter Video Number:"));
         top.add(trackNo);
@@ -66,13 +51,13 @@ public class VideoPlayer extends JFrame implements ActionListener {
         top.add(trackRating);
         top.add(new JLabel("video/director name:"));
         top.add(searchField);
-        
+
         add("North", top);
 
         information.setText("");
         middle.add(information);
         add("Center", middle);
-       
+
         bottom.add(Update_rating);
         Update_rating.addActionListener(this);
         bottom.add(quit);
@@ -127,7 +112,7 @@ public class VideoPlayer extends JFrame implements ActionListener {
             } else {
                 information.setText(" ");
                 playList.add(key);
-                
+
                 for (int i = 0; i < playList.size(); i++) {
                     String tempKey = playList.get(i);
                     String tempName = VideoData.getName(tempKey);
@@ -135,8 +120,7 @@ public class VideoPlayer extends JFrame implements ActionListener {
                 }
             }
         } else if (e.getSource() == play) {
-            if(playList.size() == 0)
-            {
+            if (playList.size() == 0) {
                 information.setText("No Video in playlist to play");
             }
             for (int i = 0; i < playList.size(); i++) {
@@ -163,7 +147,7 @@ public class VideoPlayer extends JFrame implements ActionListener {
                     information.append("\nPlay count: " + VideoData.getPlayCount(key));
 
                     VideoData.setRating(key, rating_value);
-                    
+
                 } catch (NumberFormatException ex) {
                     trackRating.setText("");
                     information.setText("Rating is invalid");
@@ -172,18 +156,18 @@ public class VideoPlayer extends JFrame implements ActionListener {
                     information.setText("Rating is invalid");
                 }
             }
-        }else if(e.getSource() ==search){
+        } else if (e.getSource() == search) {
             //Here ADD Surch Functionality
             String searchedName = searchField.getText();
-            String searchForName = VideoData.searchForName(searchedName);            
-            
-            if(searchForName != null){
-                information.setText(searchForName);                
-            }
-            else
+            String searchForName = VideoData.searchForName(searchedName);
+
+            if (searchForName != null) {
+                information.setText(searchForName);
+            } else {
                 information.setText("No such video with this name");
-                    
-        }else if (e.getSource() == quit) {
+            }
+
+        } else if (e.getSource() == quit) {
             VideoData.close();
             System.exit(0);
         }
