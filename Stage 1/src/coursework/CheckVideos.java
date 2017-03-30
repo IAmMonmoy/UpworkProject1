@@ -23,7 +23,7 @@ public class CheckVideos extends JFrame implements ActionListener {
         setBounds(100, 100, 400, 200);
         //set the name for the jframe 
         setTitle("Check Videos");
-        //This is for disposing jframe but clicking the X button
+        //This is for disposing jframe by clicking the X button
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         //Create a Jpanel and add the components for top bar
         JPanel top = new JPanel();

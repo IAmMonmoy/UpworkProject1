@@ -12,7 +12,6 @@ public class CheckVideos extends JFrame implements ActionListener {
     TextArea information = new TextArea(6, 50);
     JButton list = new JButton("List All Videos");
     JButton check = new JButton("Check	Video");
-    
 
     public CheckVideos() {
         setLayout(new BorderLayout());
@@ -24,7 +23,7 @@ public class CheckVideos extends JFrame implements ActionListener {
         top.add(trackNo);
         top.add(check);
         top.add(list);
-       
+
         list.addActionListener(this);
         check.addActionListener(this);
         add("North", top);
@@ -42,14 +41,18 @@ public class CheckVideos extends JFrame implements ActionListener {
             information.setText(VideoData.listAll());
         } else {
             String key = trackNo.getText();
-            String name = VideoData.getName(key);
-            if (name == null) {
-                information.setText("No such video number");
+            if (isNumeric(key)) {
+                String name = VideoData.getName(key);
+                if (name == null) {
+                    information.setText("No such video number");
+                } else {
+                    information.setText(name + " - " + VideoData.getDirector(key));
+                    information.append("\nRating: "
+                            + stars(VideoData.getRating(key)));
+                    information.append("\nPlay count: " + VideoData.getPlayCount(key));
+                }
             } else {
-                information.setText(name + " - " + VideoData.getDirector(key));
-                information.append("\nRating: "
-                        + stars(VideoData.getRating(key)));
-                information.append("\nPlay count: " + VideoData.getPlayCount(key));
+                information.setText("please insert a valid number");
             }
         }
     }
@@ -60,5 +63,14 @@ public class CheckVideos extends JFrame implements ActionListener {
             stars += "*";
         }
         return stars;
+    }
+
+    public static boolean isNumeric(String str) {
+        try {
+            double d = Double.parseDouble(str);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 }

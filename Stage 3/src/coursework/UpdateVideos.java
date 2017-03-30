@@ -57,6 +57,8 @@ public class UpdateVideos extends JFrame implements ActionListener {
                     information.setText("Rating is invalid");
                 }
             }
+            trackNo.setText("");
+            trackRating.setText("");
         }
     }
 

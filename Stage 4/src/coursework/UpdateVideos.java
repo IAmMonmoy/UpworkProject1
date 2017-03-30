@@ -39,36 +39,36 @@ public class UpdateVideos extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == enter) {
             String key = trackNo.getText();
-                String rating = trackRating.getText();
-                if(isNumeric(key) &&  isNumeric(rating))
-                {
-                    String name = VideoData.getName(key);
-                    if (name == null) {
-                        information.setText("No such video number");
-                    } else {
-                        try {
-                            int rating_value = Integer.parseInt(rating);
-                            information.setText(name + " - " + VideoData.getDirector(key));
-                            information.append("\nRating: "
-                                    + stars(rating_value));
-                            information.append("\nPlay count: " + VideoData.getPlayCount(key));
+            String rating = trackRating.getText();
+            if (isNumeric(key) && isNumeric(rating)) {
+                String name = VideoData.getName(key);
+                if (name == null) {
+                    information.setText("No such video number");
+                } else {
+                    try {
+                        int rating_value = Integer.parseInt(rating);
+                        information.setText(name + " - " + VideoData.getDirector(key));
+                        information.append("\nRating: "
+                                + stars(rating_value));
+                        information.append("\nPlay count: " + VideoData.getPlayCount(key));
 
-                            VideoData.setRating(key, rating_value);
+                        VideoData.setRating(key, rating_value);
 
-                        } catch (NumberFormatException ex) {
-                            trackRating.setText("");
-                            information.setText("Rating is invalid");
-                        } catch (NullPointerException ex) {
-                            trackRating.setText("");
-                            information.setText("Rating is invalid");
-                        }
+                    } catch (NumberFormatException ex) {
+                        trackRating.setText("");
+                        information.setText("Rating is invalid");
+                    } catch (NullPointerException ex) {
+                        trackRating.setText("");
+                        information.setText("Rating is invalid");
                     }
+                }
+            } else {
+                information.setText("please insert a valid number");
             }
-            else{
-                   JOptionPane.showMessageDialog(null, "Please Enter A valid digit", "Warning", JOptionPane.INFORMATION_MESSAGE);
-               }
+            trackNo.setText("");
+            trackRating.setText("");
         }
-}
+    }
 
     private String stars(int rating) {
         String stars = "";
@@ -77,16 +77,13 @@ public class UpdateVideos extends JFrame implements ActionListener {
         }
         return stars;
     }
-     public static boolean isNumeric(String str)  
-    {  
-      try  
-      {  
-        double d = Double.parseDouble(str);  
-      }  
-      catch(NumberFormatException nfe)  
-      {  
-        return false;  
-      }  
-      return true;  
+
+    public static boolean isNumeric(String str) {
+        try {
+            double d = Double.parseDouble(str);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 }

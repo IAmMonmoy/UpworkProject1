@@ -69,8 +69,6 @@ public class VideoData {
             return item.director;
         }
     }
-    
-    
 
     public static String searchForName(String name) {
         String output = "";

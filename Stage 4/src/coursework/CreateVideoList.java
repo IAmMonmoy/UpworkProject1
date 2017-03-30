@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class CreateVideoList extends JFrame implements ActionListener {
-    
+
     private ArrayList<String> playList;
 
     JTextField trackNo = new JTextField(2);
@@ -17,7 +17,7 @@ public class CreateVideoList extends JFrame implements ActionListener {
     JButton addToPlaylist = new JButton("Add to playlist");
     JButton play = new JButton("play video");
 
-    public CreateVideoList()  {
+    public CreateVideoList() {
         setLayout(new BorderLayout());
         setBounds(100, 100, 500, 200);
         setTitle("Create video playlist");
@@ -25,11 +25,11 @@ public class CreateVideoList extends JFrame implements ActionListener {
         JPanel top = new JPanel();
         top.add(new JLabel("Enter Video Number:"));
         top.add(trackNo);
-        top.add(addToPlaylist);        
+        top.add(addToPlaylist);
         top.add(play);
         top.add(reset);
         reset.addActionListener(this);
-        addToPlaylist.addActionListener(this);        
+        addToPlaylist.addActionListener(this);
         play.addActionListener(this);
         add("North", top);
         JPanel middle = new JPanel();
@@ -39,61 +39,51 @@ public class CreateVideoList extends JFrame implements ActionListener {
 
         setResizable(false);
         setVisible(true);
-        
+
         playList = new ArrayList<>();
     }
-    
-    
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addToPlaylist) {
             String key = trackNo.getText();
-            if(isNumeric(key))
-             {
-                 String name = VideoData.getName(key);
+            if (isNumeric(key)) {
+                String name = VideoData.getName(key);
 
-                 if (name == null) {
-                     information.setText("No such video number");
-                 } else {
-                     information.setText(" ");
-                     playList.add(key);
+                if (name == null) {
+                    information.setText("No such video number");
+                } else {
+                    information.setText(" ");
+                    playList.add(key);
 
-                     for (int i = 0; i < playList.size(); i++) {
-                         String tempKey = playList.get(i);
-                         String tempName = VideoData.getName(tempKey);
-                         information.append(tempName + "\n");
-                     }
-                 }
-             }
-            else{
-                       JOptionPane.showMessageDialog(null, "Please Enter A valid digit", "Warning", JOptionPane.INFORMATION_MESSAGE);
-                   }
-        }
-        else if(e.getSource() == reset)
-        {
+                    for (int i = 0; i < playList.size(); i++) {
+                        String tempKey = playList.get(i);
+                        String tempName = VideoData.getName(tempKey);
+                        information.append(tempName + "\n");
+                    }
+                }
+            } else {
+                information.setText("please insert a valid number");
+            }
+            trackNo.setText("");
+        } else if (e.getSource() == reset) {
             information.setText(null);
             playList.clear();
-        }
-        else if(e.getSource() == play){
-            for(int i = 0; i < playList.size(); i++)
-            {
+        } else if (e.getSource() == play) {
+            information.setText("playing");
+            for (int i = 0; i < playList.size(); i++) {
                 String key = playList.get(i);
                 VideoData.incrementPlayCount(key);
             }
         }
     }
-    
-    public static boolean isNumeric(String str)  
-    {  
-      try  
-      {  
-        double d = Double.parseDouble(str);  
-      }  
-      catch(NumberFormatException nfe)  
-      {  
-        return false;  
-      }  
-      return true;  
+
+    public static boolean isNumeric(String str) {
+        try {
+            double d = Double.parseDouble(str);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 }
